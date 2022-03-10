@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:WebAPI.Controllers.SpotController.GetList(System.Nullable{System.Int32},System.String)">
+            <summary>
+            取得景點
+            </summary>
+        </member>
+        <member name="M:WebAPI.Controllers.SpotController.Get(System.Int32)">
+            <summary>
+            取得詳細景點
+            </summary>
+            <param name="id">景點OID</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
