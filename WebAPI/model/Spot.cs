@@ -12,8 +12,6 @@ namespace WebAPI.model
 
         public string Name { get; set; } = string.Empty;
 
-        
-
         public int Type { get; set; }
 
         public string CName { get; set; } = string.Empty;
@@ -21,36 +19,8 @@ namespace WebAPI.model
         public string PictureUrl { get; set; } = string.Empty;
 
     }
-    public class Spot_type
-    {
-
-        public int OID { get; set; }
-
-        public string Name { get; set; } = string.Empty;
 
 
-
-        public int Type { get; set; }
-
-        public string CName { get; set; } = string.Empty;
-
-        public string PictureUrl { get; set; } = string.Empty;
-
-    }
-    public class Spot_city
-    {
-
-        public int OID { get; set; }
-
-        public string Name { get; set; } = string.Empty;
-
-        public int Type { get; set; }
-
-        public string CName { get; set; } = string.Empty;
-
-        public string PictureUrl { get; set; } = string.Empty;
-
-    }
     public class Spot_detail
     {
 

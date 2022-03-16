@@ -26,9 +26,9 @@ namespace WebAPI.Controllers
         /// 取得景點
         /// </summary>
         [HttpGet]
-        public IEnumerable<Spot> GetList(int? type ,string city = "")
+        public IEnumerable<Spot> GetList(int? type ,string city = "", int page = 1, int fetch = 30)
         {
-            return this._SpotRepository.GetList(type, city);
+            return this._SpotRepository.GetList(type, city, page, fetch);
         }
         
 

@@ -4,7 +4,7 @@
         <name>WebAPI</name>
     </assembly>
     <members>
-        <member name="M:WebAPI.Controllers.SpotController.GetList(System.Nullable{System.Int32},System.String)">
+        <member name="M:WebAPI.Controllers.SpotController.GetList(System.Nullable{System.Int32},System.String,System.Int32,System.Int32)">
             <summary>
             取得景點
             </summary>
