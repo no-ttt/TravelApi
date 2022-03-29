@@ -20,6 +20,17 @@ namespace WebAPI.model
 
     }
 
+    public class Spotdaa
+    {
+        public SpotTotal count { get; set; }    
+        public List<Spot> spots { get; set; }
+    }
+
+    public class SpotTotal
+    {
+        public int Total { get; set; }
+    }
+
 
     public class Spot_detail
     {

@@ -10,7 +10,7 @@ namespace WebAPI.model
 {
     public class SpotRepository
     {
-        public IEnumerable<Spot>GetList(int? type, string city, int page, int fetch)
+        public Spotdaa GetList(int? type, string city, int page, int fetch)
         {
             string sqlstr = $@"SELECT * FROM V_Spot
                             where CName like @City
@@ -18,14 +18,12 @@ namespace WebAPI.model
                             order by OId
                             offset (@page - 1) * @fetch rows
                             fetch next @fetch rows only";
-                //"SELECT * FROM V_Spot" +
-                //"where CName like @City" +
-                //"and (@Type is null or Type = @Type)" +
-                //"order by OID" +
-                //"offset (@page - 1) * @fetch rows" +
-                //"fetch next @fetch rows only";
-            var p = new DynamicParameters();
-            
+            string sqlstrcount  = $@"SELECT count(*) as Total FROM V_Spot
+                            where CName like @City
+                            and(@Type is null or Type = @Type)
+                          ";
+            var p = new DynamicParameters();           
+
             p.Add("@City", '%' + city + '%');
             p.Add("@Type", type);
             p.Add("@page", page);
@@ -33,21 +31,28 @@ namespace WebAPI.model
 
             using (var db = new AppDb())
             {
-                var result = db.Connection.Query<Spot>(sqlstr, p);
-                return result;
+                var result = db.Connection.Query<Spot>(sqlstr, p).ToList();
+                var count = db.Connection.QueryFirstOrDefault<SpotTotal>(sqlstrcount, p);
+                Spotdaa spotdaa = new Spotdaa
+                {
+                    spots = result,
+                     count = count
+            };
+                return spotdaa;
             }  
         }
 
 
-
         public Spot_detail Get(int id)
         {
-            var sql =
-                @"SELECT top 30 * FROM V_Spot_Detail where OID = @id";
+            var sqlstr =
+                @"SELECT * FROM V_Spot_Detail where OID = @id";
+            
+            
             
             using (var db = new AppDb())
             {
-                var result = db.Connection.QueryFirstOrDefault<Spot_detail>(sql, new {id});
+                var result = db.Connection.QueryFirstOrDefault<Spot_detail>(sqlstr, new {id});
                 return result;
             }
         }
