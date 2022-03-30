@@ -1,4 +1,7 @@
-﻿namespace WebAPI.model
+﻿using System;
+using System.Collections.Generic;
+
+namespace WebAPI.model
 {
     public class Note
     {
@@ -14,12 +17,22 @@
 
         public string CName { get; set; }
 
-        public int Type { get; set; }
-
         public string CDes { get; set; }
 
         public string Since { get; set; }
     }
+    public class NoteTotal
+    {
+        public int Total { get; set; }
+        public int Rank { get; set; }
+    }
+    public class NoteCombine
+    {
+        public NoteTotal count { get; set; }
+        public List<Note> Notes { get; set; }
+
+    }
+
     public class NoteParameter
     {
 

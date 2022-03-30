@@ -10,18 +10,18 @@ namespace WebAPI.model
 {
     public class SpotRepository
     {
-        public Spotdaa GetList(int? type, string city, int page, int fetch)
+        public Spotcombine GetList(int? type, string city, int page, int fetch)
         {
-            string sqlstr = $@"SELECT * FROM V_Spot
+            string sqlstr = $@"SELECT * FROM vd_Spot
                             where CName like @City
                             and(@Type is null or Type = @Type)
                             order by OId
                             offset (@page - 1) * @fetch rows
                             fetch next @fetch rows only";
-            string sqlstrcount  = $@"SELECT count(*) as Total FROM V_Spot
+            string sqlstrcount  = $@"SELECT count(*) as Total FROM vd_Spot
                             where CName like @City
-                            and(@Type is null or Type = @Type)
-                          ";
+                            and(@Type is null or Type = @Type)";
+
             var p = new DynamicParameters();           
 
             p.Add("@City", '%' + city + '%');
@@ -33,11 +33,11 @@ namespace WebAPI.model
             {
                 var result = db.Connection.Query<Spot>(sqlstr, p).ToList();
                 var count = db.Connection.QueryFirstOrDefault<SpotTotal>(sqlstrcount, p);
-                Spotdaa spotdaa = new Spotdaa
+                Spotcombine spotdaa = new Spotcombine
                 {
                     spots = result,
-                     count = count
-            };
+                    count = count
+                };
                 return spotdaa;
             }  
         }
@@ -46,7 +46,7 @@ namespace WebAPI.model
         public Spot_detail Get(int id)
         {
             var sqlstr =
-                @"SELECT * FROM V_Spot_Detail where OID = @id";
+                @"SELECT * FROM vd_Spot_Detail where OID = @id";
             
             
             
