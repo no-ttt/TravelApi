@@ -14,7 +14,9 @@ namespace WebAPI.model
 
         public int Type { get; set; }
 
-        public string CName { get; set; } = string.Empty;
+        public string city { get; set; } = string.Empty;
+
+        public string town { get; set; } = string.Empty;
 
         public string PictureUrl { get; set; } = string.Empty;
 
@@ -47,9 +49,11 @@ namespace WebAPI.model
 
         public string url { get; set; }
 
-        public string Geohash { get; set; }
+        public string lat { get; set; }
 
-        public int MyProperty { get; set; }
+        public string lon { get; set; }
+
+        public string Geohash { get; set; }
 
         public int Type { get; set; }
 

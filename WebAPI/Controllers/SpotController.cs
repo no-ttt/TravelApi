@@ -31,11 +31,6 @@ namespace WebAPI.Controllers
             return this._SpotRepository.GetList(type, city, page, fetch);
         }
 
-        
-
-
-
-
 
         /// <summary>
         /// 取得詳細景點

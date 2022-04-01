@@ -13,13 +13,13 @@ namespace WebAPI.model
         public Spotcombine GetList(int? type, string city, int page, int fetch)
         {
             string sqlstr = $@"SELECT * FROM vd_Spot
-                            where CName like @City
+                            where city like @City
                             and(@Type is null or Type = @Type)
                             order by OId
                             offset (@page - 1) * @fetch rows
                             fetch next @fetch rows only";
             string sqlstrcount  = $@"SELECT count(*) as Total FROM vd_Spot
-                            where CName like @City
+                            where city like @City
                             and(@Type is null or Type = @Type)";
 
             var p = new DynamicParameters();           

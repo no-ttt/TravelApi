@@ -57,7 +57,7 @@ namespace WebAPI.Lib
             return true;
         }
 
-        public static async Task<MemoryStream> DownloadFile(int? AID)
+        public async Task<MemoryStream> DownloadFile(int ? AID)
         {
             string FileStorage_Root = AppConfig.Config["Filestorage:Default"];
 
