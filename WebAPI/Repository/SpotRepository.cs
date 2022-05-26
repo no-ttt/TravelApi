@@ -12,12 +12,19 @@ namespace WebAPI.model
     {
         public Spotcombine GetList(int? type, string city, int page, int fetch)
         {
-            string sqlstr = $@"SELECT * FROM vd_Spot
+            string sqlstrCity = $@"SELECT * FROM vd_Spot
                             where city like @City
                             and(@Type is null or Type = @Type)
                             order by OId
                             offset (@page - 1) * @fetch rows
                             fetch next @fetch rows only";
+            string sqlstrTown = $@"SELECT * FROM vd_Spot
+                            where town like @City
+                            and(@Type is null or Type = @Type)
+                            order by OId
+                            offset (@page - 1) * @fetch rows
+                            fetch next @fetch rows only";
+            //總數
             string sqlstrcount  = $@"SELECT count(*) as Total FROM vd_Spot
                             where city like @City
                             and(@Type is null or Type = @Type)";
@@ -31,7 +38,11 @@ namespace WebAPI.model
 
             using (var db = new AppDb())
             {
-                var result = db.Connection.Query<Spot>(sqlstr, p).ToList();
+                var result = db.Connection.Query<Spot>(sqlstrCity, p).ToList();
+                if(result.Count == 0)
+                {
+                    result = db.Connection.Query<Spot>(sqlstrTown, p).ToList();
+                }
                 var count = db.Connection.QueryFirstOrDefault<SpotTotal>(sqlstrcount, p);
                 Spotcombine spotdaa = new Spotcombine
                 {

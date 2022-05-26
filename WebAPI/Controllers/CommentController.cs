@@ -23,9 +23,9 @@ namespace WebAPI.Controllers
 
         
         [HttpPost]
-        public IActionResult Insert(int id, int Rank, string Des, int AID, int SID)
+        public IActionResult Insert(int id, int Rank, string Des, int AID)
         {
-            var result = this._CommentRepository.insert_comment(id, Rank, Des, AID, SID);
+            var result = this._CommentRepository.insert_comment(id, Rank, Des, AID);
             if (result > 0)
             {
                 return Ok();
